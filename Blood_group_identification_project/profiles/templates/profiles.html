@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Identification</title>
+    <style>
+        body { 
+            background-image: url('https://wallpapercave.com/wp/wp9407427.jpg'); 
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.7); /* Whitish transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .upload-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .upload-box {
+            padding: 20px;
+            border-radius: 8px;
+            width: 45%;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 18px;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+
+        .upload-box input {
+            display: none;
+        }
+
+        .red-box {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
+
+        .green-box {
+            background-color: rgba(0, 0, 255, 0.3); 
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #image-preview {
+            margin-top: 20px;
+            max-width: 100%;
+            max-height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .upload-container {
+                flex-direction: column;
+                align-items: center;
+                margin: 20px;
+            }
+
+            .upload-box {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Please Upload the ABO Blood Cell Image</h1>
+        
+        <form action="{% url 'profiles' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="upload-container">
+                <label class="upload-box red-box" for="abo-upload">Upload ABO Blood Cell Image
+                    <input type="file" id="abo-upload" name="abo_image" accept="image/*">
+                </label>
+            </div>
+
+            <button type="submit">Check for Blood Group</button>
+        </form>
+
+        {% if morph_image %}
+            <div id="image-preview-container">
+                <h3>Uploaded Image:</h3>
+                <img src="data:image/png;base64,{{ morph_image }}" alt="Processed Image" style="max-width: 400px;">
+                <h3>Blood type is {{blood_type}}</h3> 
+            </div>
+            {% endif %}
+
+            {% if error_message %}
+            <h3>The uploaded image could not be processed. Please ensure it is a valid blood smear image.</h3> 
+        {% endif %}
+    </div>
+
+</body>
+</html>

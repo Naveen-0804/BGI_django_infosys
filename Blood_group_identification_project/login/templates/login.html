@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-photo/rbc-blood-cell-stock-photos-illustrations-3d-renders-art-concept_662214-3677.jpg?w=996'); /* Set your image path here */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: flex-start; /* Align form to the left */
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px; /* Add some padding to prevent content from touching the edge */
+            overflow:hidden
+            
+        }
+        
+        div {
+            background-color: rgba(255, 255, 255, 0.5); /* Whitish transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-left: 40px; /* Add margin to push form away from the left edge */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        form p {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        a{
+            text-decoration:none;
+            color:black;
+            position:relative;
+            top:10px
+        }
+        .msg {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        /* Media query for responsiveness on smaller screens */
+        @media screen and (max-width: 768px) {
+            body {
+                justify-content: center; /* Center the form on smaller screens */
+            }
+
+            div {
+                width: 90%; /* Make the form width responsive */
+                margin-left: 0; /* Reset left margin for smaller screens */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h2 {
+                font-size: 20px; /* Smaller font size on very small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h2>Login</h2>
+        <p class="msg">{{ msg }}</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Login</button>
+            <center> <a href='/register'>Don't have an account? Register</a></center>
+        </form>
+    </div>
+
+</body>
+
+</html>
