@@ -8,33 +8,33 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://img.freepik.com/premium-photo/close-up-blood-cells-with-red-blue-blood-cells-background_154739-1006.jpg?w=740'); 
+            background-image: url('https://img.freepik.com/premium-photo/close-up-blood-cells-with-red-blue-blood-cells-background_154739-1006.jpg?w=740');
             background-size: cover;
             background-position: center;
             display: flex;
-            justify-content: flex-start; 
+            justify-content: center; 
             align-items: center;
             height: 100vh;
             margin: 0;
             padding: 20px; 
             box-sizing: border-box;
-            overflow: hidden;
         }
 
         .form-container {
-            background-color: rgba(255, 255, 255, 0.5);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             max-width: 400px;
             width: 100%;
-            margin-left: 40px; /* Move the form to the left */
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
         }
 
         form {
@@ -45,29 +45,42 @@
         label {
             font-weight: bold;
             margin-bottom: 5px;
+            text-align: left;
+            display: block;
+            color: #555;
         }
 
         input {
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 15px;
             width: 100%;
             box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
 
         button {
-            padding: 10px;
+            padding: 12px;
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         button:hover {
             background-color: #45a049;
+            transform: translateY(-2px);
         }
 
         .error {
@@ -75,34 +88,38 @@
             font-size: 14px;
             margin-top: -10px;
             margin-bottom: 10px;
+            text-align: left;
         }
 
-        .input-group {
-            margin-bottom: 15px;
+        a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
         }
 
-        a{
-            text-decoration:none;
-            color:black;
-            position:relative;
-            top:10px
+        a:hover {
+            color: #4CAF50;
         }
 
         /* Media query for responsiveness on smaller screens */
         @media screen and (max-width: 768px) {
             body {
-                justify-content: center; /* Center the form for smaller screens */
+                padding: 10px;
             }
 
             .form-container {
                 max-width: 90%;
-                margin-left: 0; /* Reset left margin on smaller screens */
+                padding: 20px;
             }
-        }
 
-        @media screen and (max-width: 480px) {
             h1 {
-                font-size: 20px; /* Smaller font size on very small screens */
+                font-size: 22px;
+            }
+
+            input, button {
+                font-size: 16px;
             }
         }
     </style>
@@ -111,7 +128,7 @@
 <body>
 
     <div class="form-container">
-        <h1>Register </h1>
+        <h1>Register</h1>
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
@@ -124,7 +141,7 @@
                 </div>
             {% endfor %}
             <button type="submit">Register</button>
-           <center> <a href='/login'>Already have an account? Sign In</a></center>
+            <a href="/login">Already have an account? Sign In</a>
         </form>
     </div>
 
